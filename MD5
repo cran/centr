@@ -1,0 +1,16 @@
+36d1dcf7b3f25a4cb3dcfc96c3c91dc4 *DESCRIPTION
+fe6d0eeef92656d9183937ca13c5b041 *LICENSE
+5de0739736e65e3fd297106262dc604d *NAMESPACE
+334ac6e438790e5d2ea6aa597be41617 *NEWS.md
+7f095d6c4c38924447918129140c43d4 *R/helpers.R
+48599dd05e841db96667e23153bf8b64 *R/mean_center.R
+9c1cab9d395495f7789430cf66a19217 *R/median_center.R
+b558338151291f3d560f0b9373bcc97e *README.md
+a2a80b6239465d18f0398339e81b8d44 *man/figures/logo.png
+3cc8f94ac6b34a3275e560fcd2691931 *man/mean_center.Rd
+8d1aa94fb69fa4a2b44f69376f28fea2 *man/median_center.Rd
+11128e8cff317a793b8b3f23f862df9f *tests/testthat.R
+c1c2807b08654dd45cb20d939c886483 *tests/testthat/helper.R
+6471ff0d02bb14a4cfb55afab00cc89b *tests/testthat/test-helpers.R
+5ea61b0ed1afc00569f57797967ec639 *tests/testthat/test-mean_center.R
+8c6ffdd11035a35535a758d26733c2c3 *tests/testthat/test-median_center.R
