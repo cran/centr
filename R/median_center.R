@@ -30,7 +30,7 @@ planar_median <- function(X, Y, tol, wts = NULL) {
     estimate <- new_estimate
     new_estimate <- planar_median_est(X, Y, estimate$X, estimate$Y, wts)
   }
-  new_estimate
+  tibble::as_tibble(new_estimate)
 }
 
 #' Median Center
@@ -45,15 +45,15 @@ planar_median <- function(X, Y, tol, wts = NULL) {
 #' It uses the methodology introduced by Kuhn and Kuenne (1962).
 #'
 #' Currently, median center is only implemenented for projected data.
-#' @param x Input POINT, MULTIPOINT, POLYGON, or MULTIPOLYGON
-#'  simple features
-#' @param group name of character column specifying groups
-#'  to calculate individual median centers for
+#' @param x Input POINT or POLYGON simple features
+#' @param group column name(s) specifying groups
+#'  to calculate individual mean centers for
 #' @param weight name of numeric weight column specifying an
-#'  individual point's contribution to the median center
+#'  individual point's contribution to the mean center
 #' @param tolerance numeric threshold determining when an
 #'  estimate improvement is sufficiently small enough to stop
 #'  iterating (smaller = slower, but more precision)
+#' @param ... expressions passed to `dplyr::summarise()`
 #' @returns An sf object with a median center for each group
 #' @examples
 #' df <- data.frame(
@@ -65,24 +65,62 @@ planar_median <- function(X, Y, tol, wts = NULL) {
 #' x <- sf::st_as_sf(df, coords = c("lon", "lat"), crs = 4326)
 #' x_transformed <- sf::st_transform(x, crs = "ESRI:102003")
 #' median_center(x_transformed, group = "grp", weight = "wt")
+#' 
+#' x_transformed |>
+#'   dplyr::group_by(grp) |>
+#'   median_center(weight = "wt")
 #' @export
-median_center <- function(x, group = NULL, weight = NULL, tolerance = 0.0001) {
-  x_name <- deparse(substitute(x))
-  is_lonlat <- sf::st_is_longlat(x)
-  allowed_geom <- c("POINT", "POLYGON", "MULTIPOINT", "MULTIPOLYGON")
-
-  x_checks(x, x_name, allowed_geom)
-  if (is_lonlat) {
-    stop("`", x_name, "` does not have a defined projection")
+median_center <- function(x, group, weight, tolerance = 0.0001, ...) {
+  chk::chk_s3_class(x, "sf")
+  chk_not_any_empty_sf(x)
+  chk_only_allowed_sf(x)
+  chk_not_na_crs(x)
+  chk_is_not_lonlat(x)
+  
+  if (!missing(group)) {
+    chk::chk_character(group)
+    chk_columns_exist(x, group)
+  } else {
+    group <- dplyr::group_cols(data = x)
+  }
+  if (!missing(weight)) {
+    chk::chk_string(weight)
+    chk_columns_exist(x, weight)
+    chk::chk_numeric(x[[weight]])
+    chk::chk_not_any_na(x[[weight]])
+    chk_not_any_infinite(x[[weight]])
+    chk::chk_gte(x[[weight]], 0)
   }
 
-  group_checks(x, x_name, group)
-  weight_checks(x, x_name, weight)
+  crs <- sf::st_crs(x)
+  coordinates <- suppressWarnings(sf::st_centroid(x)) |>
+    sf::st_coordinates() |>
+    tibble::as_tibble()
+  sf_column <- attr(x, "sf_column")
+  x <- tibble::tibble(x)
+  if (!missing(weight)) {
+    x[[sf_column]] <- dplyr::bind_cols(coordinates, wts = x[[weight]])
+  } else {
+    x[[sf_column]] <- coordinates
+  }
 
-  x_processed <- x_processing(x, is_lonlat, group, weight)
+  x <- dplyr::group_by(x, dplyr::pick({{ group }}))
+  x <- dplyr::summarise(
+    x, 
+    ..., 
+    geometry = do.call(planar_median, c(as.list(dplyr::pick({{ sf_column }})[[1]]), tol = tolerance))
+  )
 
-  centers <- x_processed |>
-    lapply(\(x) do.call(planar_median, c(x, tolerance)))
+  x[[sf_column]] <- sf::st_as_sfc(sf::st_as_sf(x[[sf_column]], coords = c("X", "Y"), crs = crs, na.fail = FALSE))
+  x <- dplyr::ungroup(sf::st_as_sf(x))
 
-  output_processing(centers, x, group)
+  center_is_empty <- sf::st_is_empty(x)
+  if (any(center_is_empty)) {
+    chk::wrn(
+      "Empty point%s returned for %n group%s with zero total weight", 
+      n = sum(center_is_empty)
+    )
+  }
+
+  x
 }

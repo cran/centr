@@ -18,7 +18,9 @@ NC_tracts <- NC_tracts |>
   subset(select = c(GEOID_county, value))
 
 ## ----error = TRUE-------------------------------------------------------------
+try({
 mean_center(NC_tracts, group = "GEOID_county", weight = "value")
+})
 
 ## -----------------------------------------------------------------------------
 NC_tracts <- subset(NC_tracts, !st_is_empty(NC_tracts))

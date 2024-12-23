@@ -1,6 +1,6 @@
 Package: centr
 Title: Weighted and Unweighted Spatial Centers
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person("Ryan", "Zomorrodi", , "rzomor2@uic.edu", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-6417-5985"))
@@ -11,18 +11,17 @@ Description: Generate mean and median weighted or unweighted spatial centers.
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-Imports: sf
+Imports: chk, dplyr, sf, tibble
 URL: https://ryanzomorrodi.github.io/centr/,
         https://github.com/ryanzomorrodi/centR
-Suggests: data.table, knitr, rmarkdown, testthat (>= 3.0.0), tibble,
-        tidycensus
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0), tidycensus
 Config/testthat/edition: 3
 BugReports: https://github.com/ryanzomorrodi/centR/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2024-09-01 00:32:26 UTC; user
+Packaged: 2024-12-23 04:07:30 UTC; user
 Author: Ryan Zomorrodi [aut, cre, cph]
     (<https://orcid.org/0009-0003-6417-5985>)
 Maintainer: Ryan Zomorrodi <rzomor2@uic.edu>
 Repository: CRAN
-Date/Publication: 2024-09-01 04:00:02 UTC
+Date/Publication: 2024-12-23 04:20:02 UTC
