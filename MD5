@@ -1,13 +1,13 @@
-8e92988cffc0eea91962b77b51862228 *DESCRIPTION
+9d6e1b7d16fac58320f5b52949594df7 *DESCRIPTION
 fe6d0eeef92656d9183937ca13c5b041 *LICENSE
 5de0739736e65e3fd297106262dc604d *NAMESPACE
-c360ca946d53cbe2686832c08fc8c19f *NEWS.md
+596119afda266adfbcd6c351efa22509 *NEWS.md
 a8f683aac7103435fa1715c29aa36472 *R/additional_chk.R
 0e42da0655e663179d038abf863f5ae6 *R/helpers.R
 eaac0bbcb283e6a43a11dc9291708c96 *R/mean_center.R
 cb3d97d2e140f081b7cecdb7f16bdf90 *R/median_center.R
 e142a8d3d0f741d3b174e1bdea0d361b *README.md
-8e15e489d523402b19e4b3d24cd0b896 *build/vignette.rds
+d2b397ef827beb00e6e4c5d0608551df *build/vignette.rds
 4be677fec9b6b8da65dddea973da4c5d *inst/doc/typical_usage.R
 f9b27aa94e653bf8a1a376e6551cddcb *inst/doc/typical_usage.Rmd
 d7ea6622749af753bf0f19685df72722 *inst/doc/typical_usage.html
