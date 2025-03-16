@@ -1,7 +1,7 @@
-9d6e1b7d16fac58320f5b52949594df7 *DESCRIPTION
+e9577254c5fdd52e3256b163bd71cdbf *DESCRIPTION
 fe6d0eeef92656d9183937ca13c5b041 *LICENSE
 5de0739736e65e3fd297106262dc604d *NAMESPACE
-596119afda266adfbcd6c351efa22509 *NEWS.md
+cd6a7d4459631ed9e074c32aa01c1a76 *NEWS.md
 a8f683aac7103435fa1715c29aa36472 *R/additional_chk.R
 0e42da0655e663179d038abf863f5ae6 *R/helpers.R
 eaac0bbcb283e6a43a11dc9291708c96 *R/mean_center.R
@@ -18,5 +18,5 @@ eb0ea84cf14ac7ec5f5db60c1c5a7ad9 *man/mean_center.Rd
 6e10c7f2cfea3b3b9df074712723d005 *tests/testthat/helper.R
 fb3b41b2793c10553a696ccb274b7f1f *tests/testthat/test-helpers.R
 47cf957e906ff7b00e7f43adb43cabb4 *tests/testthat/test-mean_center.R
-80ed984963f742f22b2b6e8489901227 *tests/testthat/test-median_center.R
+c958df20977b52046ef04b53842cc935 *tests/testthat/test-median_center.R
 f9b27aa94e653bf8a1a376e6551cddcb *vignettes/typical_usage.Rmd
