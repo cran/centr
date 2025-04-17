@@ -1,6 +1,6 @@
 Package: centr
 Title: Weighted and Unweighted Spatial Centers
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: 
     person("Ryan", "Zomorrodi", , "rzomor2@uic.edu", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-6417-5985"))
@@ -15,14 +15,14 @@ Depends: R (>= 4.1.0)
 Imports: chk, dplyr, sf, tibble
 URL: https://ryanzomorrodi.github.io/centr/,
         https://github.com/ryanzomorrodi/centr
-Suggests: knitr, rmarkdown, testthat (>= 3.0.0), tidycensus
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 BugReports: https://github.com/ryanzomorrodi/centR/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-03-16 21:11:20 UTC; user
+Packaged: 2025-04-17 01:54:59 UTC; user
 Author: Ryan Zomorrodi [aut, cre, cph]
     (<https://orcid.org/0009-0003-6417-5985>)
 Maintainer: Ryan Zomorrodi <rzomor2@uic.edu>
 Repository: CRAN
-Date/Publication: 2025-03-16 21:30:02 UTC
+Date/Publication: 2025-04-17 04:10:02 UTC
